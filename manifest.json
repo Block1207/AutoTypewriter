@@ -1,0 +1,22 @@
+{
+    "manifest_version" : 2,
+    "name" : "AutoTypewriter",
+    "version" : "1.0",
+    "description" : "AutoTypewriter",
+    "content_scripts" : [
+        {
+            "matches" : ["*://*.typewriter.at/*"],
+            "js" : ["app.js"]
+        }
+    ],
+    "browser_action" : {
+        "default_title" : "typewriter",
+        "default_popup" : "popUp.html"
+    },
+    "permissions" : ["storage"],
+    "browser_specific_settings": {
+        "gecko": {
+          "id": "addon@example.com"
+        }
+      }
+}
