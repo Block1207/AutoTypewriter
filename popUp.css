@@ -1,0 +1,15 @@
+body {
+    width: 300px;
+    height: 165px;
+    background-color: rgb(77, 77, 77);
+    color: white;
+}
+
+h1 {
+    font-size: 32px;
+}
+
+#sliders {
+    display: block;
+    outline: none;
+}

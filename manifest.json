@@ -1,0 +1,17 @@
+{
+    "manifest_version" : 3,
+    "name" : "Typefucker V1",
+    "version" : "1.0",
+    "description" : "AutoTypewriter, by el Duce und Simon; PS: Lieve get raus an den herren Praster <3 <3 <3 XoXo",
+    "content_scripts" : [
+        {
+            "matches" : ["https://at4.typewriter.at/*"],
+            "js" : ["app.js"]
+        }
+    ],
+    "action" : {
+        "default_title" : "typewriter + ",
+        "default_popup" : "popUp.html"
+    },
+    "permissions" : ["storage"]
+}
