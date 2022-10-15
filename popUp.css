@@ -1,5 +1,6 @@
 body {
-    width: 350px;
+    width: auto;
+    max-width: 400px;
     height: 165px;
     background-color: rgb(77, 77, 77);
     color: white;
@@ -8,8 +9,18 @@ body {
 h1 {
     font-size: 32px;
 }
+.main{
+    margin: auto;
+    padding: 5px;
+    width: 100%;
+    border:solid #232323 5px;
+    border-radius: 5px;
+}
 
 #sliders {
     display: block;
     outline: none;
+}
+.buttons{
+
 }
