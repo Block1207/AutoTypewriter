@@ -13,7 +13,7 @@
         "default_title" : "typewriter",
         "default_popup" : "popUp.html"
     },
-    "permissions" : ["storage"],
+    "permissions" : ["storage", "tabs"],
     "browser_specific_settings": {
         "gecko": {
           "id": "addon@example.com"
