@@ -5,7 +5,7 @@ window.onload = () => {
         browser.storage.sync.set({
             typer: e.target.checked
         })
-        browser.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+        browser.tabs.query({ active: true, currentWindow: true , url: "*://*.typewriter.at/*"}, function (tabs) {
             browser.tabs.reload(tabs[0].id);
         });
     })
@@ -25,7 +25,7 @@ window.onload = () => {
         browser.storage.sync.set({
             errorSlide: e.target.value
         });
-        browser.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+        browser.tabs.query({ active: true, currentWindow: true , url: "*://*.typewriter.at/*"}, function (tabs) {
             browser.tabs.reload(tabs[0].id);
         });
     })
@@ -36,7 +36,7 @@ window.onload = () => {
         browser.storage.sync.set({
             bufferValue: e.target.value
         });
-        browser.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+        browser.tabs.query({ active: true, currentWindow: true , url: "*://*.typewriter.at/*"}, function (tabs) {
             browser.tabs.reload(tabs[0].id);
         });
     })
@@ -49,7 +49,7 @@ window.onload = () => {
         browser.storage.sync.set({
             legit: e.target.checked
         })
-        browser.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+        browser.tabs.query({ active: true, currentWindow: true , url: "*://*.typewriter.at/*"}, function (tabs) {
             browser.tabs.reload(tabs[0].id);
         });
     })
@@ -57,22 +57,17 @@ window.onload = () => {
         legitMode.checked = result.legit;
     })
 
-
-
-
     let fuckEm = document.getElementById('fuckEm')
     fuckEm.addEventListener("change", (e) => {
         browser.storage.sync.set({
             fucker: e.target.checked
         })
-        browser.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+        browser.tabs.query({ active: true, currentWindow: true , url: "*://*.typewriter.at/*"}, function (tabs) {
             browser.tabs.reload(tabs[0].id);
         });
     })
     browser.storage.sync.get(["fucker"], function (result) {
         fuckEm.checked = result.fucker;
     })
-
-
 
 }
