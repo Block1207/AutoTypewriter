@@ -7,30 +7,37 @@
     <title>--typer--</title>
     <script src="popUp.js"></script>
     <link rel="stylesheet" href="popUp.css">
+    <link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet' type='text/css'>
 </head>
 <body>
     <div class="main" id="popUp">
-        <h1 style="color : rgb(255, 255, 255); text-decoration: underline;">
-            Typewriter ++</h1>
-        <input type="password" placeholder="Coming-Soon !" style=" pointer-events: none; user-select: none;"  >
-        <div class="buttons" style="display : block">
-            <input id="onSwitch" name="onSwitch" type="checkbox">
-            <label for="onSwitch">Auto-Tipper</label>
-            <input id="fuckEm" type="checkbox">
-            <label for="fuckEm">FUCK YOUU</label>
-            <input id="legitSwitch" type="checkbox">
-            <label for="legitSwitch">Legit Mode</label>
-        </div>
-        <div id="sliders">
-            <div>            
-                <input id="errorRange" type="range" min="0" max="5">
-                <label for="errorRange" id="errorValue"></label>
-            </div>
-            <div>
-                <input id="bufferRange" type="range" style="user-select: none;">
-                <label for="bufferRange" id="bufferValue" style="user-select: none;"></label>
-            </div>
-        </div>
+        <h1 class="title">
+            Typewriter <br> ++</h1>
+        <input class="cuming-soon" type="password" placeholder="Coming-Soon !">
+        <!-- <div> -->
+        <ul class="buttons">
+            <li>
+                <input id="onSwitch" name="onSwitch" type="checkbox">
+                <label for="onSwitch">Auto-Tipper</label>
+            </li>
+            <li>
+                <input id="fuckEm" type="checkbox">
+                <label for="fuckEm">FUCK YOUU</label>
+            </li>
+            <li>
+                <input id="legitSwitch" type="checkbox">
+                <label for="legitSwitch">Legit Mode</label>
+            </li>
+        </ul>
+        <!-- </div> -->
+
+        <ul class="sliders" id="sliders"> <!--Replaced div idk if it fucks something up-->
+            <li><input id="errorRange" type="range" min="0" max="5"></li>
+            <li><label for="errorRange" id="errorValue">test</label></li>
+            <li><input id="bufferRange" type="range" style="user-select: none;"></li>
+            <li><label for="bufferRange" id="bufferValue" style="user-select: none;">test</label></li>
+        </ul>
+        <p id="love">Made with love by Litauen</p>
     </div>
 </body>
 </html>
