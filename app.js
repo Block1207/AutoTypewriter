@@ -176,6 +176,32 @@ chrome.storage.sync.get(["typer", "errorSlide", "bufferValue", "fucker", "legit"
                         e.stopPropagation();
                         e.preventDefault();
                     }
+                    if(elem.innerHTML == "&nbsp;") {
+                        console.log("wrong!!");
+                        e.cancelable = true;
+                        e.stopImmediatePropagation();
+                        e.stopPropagation();
+                        e.preventDefault();
+                    }
+                    if(!isLowerCase(elem.innerHTML) && (
+                        e.code == "Digit1"
+                        || e.code == "Digit2"
+                        || e.code == "Digit3"
+                        || e.code == "Digit4"
+                        || e.code == "Digit5"
+                        || e.code == "Digit6"
+                        || e.code == "Digit7"
+                        || e.code == "Digit8"
+                        || e.code == "Digit9"
+                        || e.code == "Digit0"
+                        )
+                    ){
+                        console.log("wrong!!");
+                        e.cancelable = true;
+                        e.stopImmediatePropagation();
+                        e.stopPropagation();
+                        e.preventDefault();
+                    }
                 }
             }
             
