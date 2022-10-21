@@ -178,6 +178,16 @@ chrome.storage.sync.get(["typer", "errorSlide", "bufferValue", "fucker", "legit"
                     }
                 }
             }
+            
+            if(!e.shiftKey) {
+                if(isLetter(elem.innerHTML) && !isLowerCase(elem.innerHTML)) {
+                    console.log("wrong!!");
+                    e.cancelable = true;
+                    e.stopImmediatePropagation();
+                    e.stopPropagation();
+                    e.preventDefault();
+                }
+            }
         })
 
         function isLetter(str) {
