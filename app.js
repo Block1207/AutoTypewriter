@@ -1,20 +1,21 @@
-console.log("TYPEHACKERWORKING BITTTTCHHH")
 var toggled;
 var errorSlide;
 var bufferValue;
-chrome.storage.sync.get(["typer", "errorSlide", "bufferValue", "fucker", "legit"], function (result) {
+var outputSwitch;
+chrome.storage.sync.get(["typer", "errorSlide", "bufferValue", "fucker", "legit", "outputSwitch"], function (result) {
     toggled = result.typer;
     fucker = result.fucker;
     legit = result.legit;
     errorSlide = result.errorSlide;
     bufferValue = result.bufferValue;
-    console.log(errorSlide, bufferValue, fucker, legit)
+    outputSwitch = result.outputSwitch;
+    if(outputSwitch){console.log(errorSlide, bufferValue, fucker, legit);};
     var letter = document.getElementById('actualLetter').innerHTML;
     var input = document.getElementById('input_area');
     var errorCount = 0;
     var errorLimit = errorSlide;
     var typeLimit = 0;
-    console.log(letter);
+    if(outputSwitch) {console.log("[" + letter + "]");}
 
     function getRandomInt(min, max) {
         min = Math.ceil(min);
@@ -24,14 +25,13 @@ chrome.storage.sync.get(["typer", "errorSlide", "bufferValue", "fucker", "legit"
 
 
     function start() {
-        console.log("You have a maximum of " + errorLimit + " botmade errors !")
-        console.log("You have " + errorCount + " bot made error('s)");
+        if(outputSwitch) {console.log("You have " + errorCount + "out of " + errorLimit+ " bot made error('s)");}
         var fail = getRandomInt(1, 20); console.log(fail);
         if (typeLimit > 5) {
             if (errorCount < errorLimit) {
                 if (fail == 5) {
                     input.dispatchEvent(new KeyboardEvent('keypress', { 'key': "´" }));
-                    errorCount = errorCount + 1; console.log("Added 1 error");
+                    errorCount = errorCount + 1; if(outputSwitch){console.log("Added 1 error");};
                 }
             }
         }
@@ -43,7 +43,7 @@ chrome.storage.sync.get(["typer", "errorSlide", "bufferValue", "fucker", "legit"
 
         var letter = document.getElementById('actualLetter').innerHTML;
         if (letter == "&nbsp;") {
-            console.log("---SPACE---")
+            if (outputSwitch){console.log("---SPACE---");};
             input.dispatchEvent(new KeyboardEvent('keypress', { 'key': letter }));
             typeLimit = typeLimit + 1;
         }
@@ -51,11 +51,11 @@ chrome.storage.sync.get(["typer", "errorSlide", "bufferValue", "fucker", "legit"
         setTimeout(function () {
             console.log(timer)
             var letter = document.getElementById('actualLetter').innerHTML;
-            console.log('typing: ' + letter);
+            if(outputSwitch){console.log('typing: ' + letter);};
             input.dispatchEvent(new KeyboardEvent('keypress', { 'key': letter }));
             start();
         }, timer);
-        console.log('---')
+        if(outputSwitch){console.log('---');};
     };
 
     if (toggled) {
@@ -64,7 +64,6 @@ chrome.storage.sync.get(["typer", "errorSlide", "bufferValue", "fucker", "legit"
     }
 
     if (fucker) {
-        console.log("FUCK Em")
 
         document.dispatchEvent(new KeyboardEvent('keypress', { 'key': '&nbsp;' }))
 
@@ -81,6 +80,9 @@ chrome.storage.sync.get(["typer", "errorSlide", "bufferValue", "fucker", "legit"
 
         type();
     }
+    // while(fucker) {
+    //     if (outputSwitch) {console.log("FUCK EM !!!");};
+    // }
 
     if (legit) {
         let elem = document.getElementById("actualLetter")
@@ -108,7 +110,7 @@ chrome.storage.sync.get(["typer", "errorSlide", "bufferValue", "fucker", "legit"
                 || (elem.innerHTML != "9" && e.code == "Digit9" && !e.shiftKey)
                 || (elem.innerHTML != "0" && e.code == "Digit0" && !e.shiftKey)
             ) {
-                console.log("wrong!!");
+                if (outputSwitch){console.log("wrong!!");};
                 e.cancelable = true;
                 e.stopImmediatePropagation()
                 e.stopPropagation()
