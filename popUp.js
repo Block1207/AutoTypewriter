@@ -58,7 +58,18 @@ window.onload = () => {
         legitMode.checked = result.legit;
     })
 
-
+    let outputSwitch = document.getElementById('outputSwitch')
+    outputSwitch.addEventListener("change", (e) => {
+        chrome.storage.sync.set({
+            outputSwitch: e.target.checked
+        })
+        chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+            chrome.tabs.reload(tabs[0].id);
+        });
+    })
+    chrome.storage.sync.get(["outputSwitch"], function (result) {
+        outputSwitch.checked = result.outputSwitch;
+    })
 
 
     let fuckEm = document.getElementById('fuckEm')

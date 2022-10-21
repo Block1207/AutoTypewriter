@@ -146,7 +146,7 @@ chrome.storage.sync.get(["typer", "errorSlide", "bufferValue", "fucker", "legit"
                 && e.code != "Digit9"
                 && e.code != "Digit0"
             ) {
-                console.log("wrong!!");
+                if(outputSwitch){console.log("wrong!!");}
                 e.cancelable = true;
                 e.stopImmediatePropagation();
                 e.stopPropagation();
@@ -155,7 +155,7 @@ chrome.storage.sync.get(["typer", "errorSlide", "bufferValue", "fucker", "legit"
 
             // german - english layout
             if ((elem.innerHTML.toLowerCase() != "y" && e.code == "KeyZ") || (elem.innerHTML.toLowerCase() != "z" && e.code == "KeyY")) {
-                console.log("wrong!!");
+                if(outputSwitch){console.log("wrong!!");};
                 e.cancelable = true;
                 e.stopImmediatePropagation();
                 e.stopPropagation();
@@ -165,19 +165,55 @@ chrome.storage.sync.get(["typer", "errorSlide", "bufferValue", "fucker", "legit"
             //shift
             if (e.shiftKey) {
                 if (isLetter(elem.innerHTML) && isLowerCase(elem.innerHTML)) {
-                    console.log("wrong!!");
+                    if(outputSwitch){console.log("wrong!!");}
                     e.cancelable = true;
                     e.stopImmediatePropagation();
                     e.stopPropagation();
                     e.preventDefault();
                 } else {
                     if ((elem.innerHTML != "(" && e.code == "Digit8") || (elem.innerHTML != ")" && e.code == "Digit9")) {
-                        console.log("wrong!!");
+                        if(outputSwitch){console.log("wrong!!");}
                         e.cancelable = true;
                         e.stopImmediatePropagation();
                         e.stopPropagation();
                         e.preventDefault();
                     }
+                    if(elem.innerHTML == "&nbsp;") {
+                        if(outputSwitch){console.log("wrong!!");}
+                        e.cancelable = true;
+                        e.stopImmediatePropagation();
+                        e.stopPropagation();
+                        e.preventDefault();
+                    }
+                    if(!isLowerCase(elem.innerHTML) && (
+                        e.code == "Digit1"
+                        || e.code == "Digit2"
+                        || e.code == "Digit3"
+                        || e.code == "Digit4"
+                        || e.code == "Digit5"
+                        || e.code == "Digit6"
+                        || e.code == "Digit7"
+                        || e.code == "Digit8"
+                        || e.code == "Digit9"
+                        || e.code == "Digit0"
+                    )
+                    ){
+                        if(outputSwitch){console.log("wrong!!");}
+                        e.cancelable = true;
+                        e.stopImmediatePropagation();
+                        e.stopPropagation();
+                        e.preventDefault();
+                    }
+                }
+            }
+
+            if(!e.shiftKey) {
+                if(isLetter(elem.innerHTML) && !isLowerCase(elem.innerHTML)) {
+                    if(outputSwitch){console.log("wrong!!");}
+                    e.cancelable = true;
+                    e.stopImmediatePropagation();
+                    e.stopPropagation();
+                    e.preventDefault();
                 }
             }
         })
