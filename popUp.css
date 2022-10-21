@@ -1,0 +1,81 @@
+
+body {
+    margin: 0;
+    margin-right: 4px;
+    width:280px;
+    background-color: rgb(68, 68, 68);
+    color: white;
+}
+
+.main{
+    margin-right: 10px;
+    text-align: center;
+    width: 100%;
+    background: rgb(87, 87, 87);
+    animation: pulsate 1.5s infinite alternate;
+    border: 0.15rem solid #fff;
+    box-shadow: inset 0 0 60px 2rem rgb(42, 42, 42),
+    inset 0 0 .5rem rgb(255, 255, 255);
+    border-radius: 7px;
+
+    /*
+    uncomment to active neon border
+        box-shadow: inset 0 0 0.2rem #fff,
+                          0 0 .2rem #fff,
+                          0 0 2rem #bc13fe,
+                          0 0 0.8rem #bc13fe,
+                          0 0 2.8rem #bc13fe,
+                    inset 0 0 .2rem #e1b4ff,
+                    inset 0 0 2rem #bc13fe,
+                    inset 0 0 0.8rem #bc13fe,
+                    inset 0 0 1.3rem #bc13fe;
+    */
+}
+
+.title{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 13px;
+    margin-bottom: 15px;
+    font-size: 32px;
+    color: white;
+    text-decoration: underline;
+    text-align: center;
+    width: 200px;
+}
+.cuming-soon{
+    pointer-events: none;
+    user-select: none;
+    margin-bottom: 10px;
+}
+.buttons{
+    margin-top: 4px;
+    padding: 0;
+    list-style: none;
+    margin-bottom: 10px;
+    text-align: left;
+    margin-left: 25%;
+    margin-right: auto;
+}
+.sliders {
+    padding-left: 0;
+    margin-bottom: 10px;
+    display: inline-block;
+    outline: none;
+    list-style: none;
+}
+.error{
+    padding-bottom: 10px;
+}
+#bufferValue{
+    margin-bottom: 10px;
+}
+#love{
+    font-family: "Sofia", sans-serif;
+    font-size: 16px;
+    margin-bottom: 30px;
+}
+
+
+
+
