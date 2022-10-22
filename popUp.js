@@ -32,8 +32,10 @@ window.onload = () => {
 
     //buffer slider
     var bufferSlider = document.getElementById('bufferRange');
-    document.getElementById('bufferValue').innerHTML = "Coming Soon ! I Speed ";
+    var buferValue = document.getElementById("bufferValue");
+    buferValue.innerHTML = "Speed: ";
     bufferSlider.addEventListener("change", (e) => {
+        bufferValue.innerHTML = "Speed-Buffer: " + e.target.value;
         chrome.storage.sync.set({
             bufferValue: e.target.value
         });
@@ -43,6 +45,7 @@ window.onload = () => {
     })
     chrome.storage.sync.get(["bufferValue"], function (result) {
         bufferSlider.value = result.bufferValue;
+        bufferValue.innerHTML = "Speed-Buffer: " + result.bufferValue;
     })
 
     let legitMode = document.getElementById('legitSwitch')

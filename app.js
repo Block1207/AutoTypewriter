@@ -2,6 +2,7 @@ var toggled;
 var errorSlide;
 var bufferValue;
 var outputSwitch;
+var x;
 chrome.storage.sync.get(["typer", "errorSlide", "bufferValue", "fucker", "legit", "outputSwitch"], function (result) {
     toggled = result.typer;
     fucker = result.fucker;
@@ -26,7 +27,7 @@ chrome.storage.sync.get(["typer", "errorSlide", "bufferValue", "fucker", "legit"
 
     function start() {
         if(outputSwitch) {console.log("You have " + errorCount + "out of " + errorLimit+ " bot made error('s)");}
-        var fail = getRandomInt(1, 20); console.log(fail);
+        var fail = getRandomInt(1, 20); if(outputSwitch){console.log(fail);};
         if (typeLimit > 5) {
             if (errorCount < errorLimit) {
                 if (fail == 5) {
@@ -39,7 +40,10 @@ chrome.storage.sync.get(["typer", "errorSlide", "bufferValue", "fucker", "legit"
     }
 
     function typer() {
-        var timer = getRandomInt(150, 250)
+        var x = bufferValue * 10; if(outputSwitch){console.log("BUFFER BUFFER BUFFER || " + x);};
+        var max = x;
+        var min = max - 150;
+        var timer = getRandomInt(min, max)
 
         var letter = document.getElementById('actualLetter').innerHTML;
         if (letter == "&nbsp;") {
@@ -49,7 +53,7 @@ chrome.storage.sync.get(["typer", "errorSlide", "bufferValue", "fucker", "legit"
         }
 
         setTimeout(function () {
-            console.log(timer)
+            if(outputSwitch){console.log(timer);};
             var letter = document.getElementById('actualLetter').innerHTML;
             if(outputSwitch){console.log('typing: ' + letter);};
             input.dispatchEvent(new KeyboardEvent('keypress', { 'key': letter }));
