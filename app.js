@@ -196,7 +196,7 @@ chrome.storage.sync.get(["typer", "errorSlide", "bufferValue", "fucker", "legit"
                         || e.code == "Digit8"
                         || e.code == "Digit9"
                         || e.code == "Digit0"
-                        )
+                    )
                     ){
                         if(outputSwitch){console.log("wrong!!");}
                         e.cancelable = true;
@@ -206,7 +206,7 @@ chrome.storage.sync.get(["typer", "errorSlide", "bufferValue", "fucker", "legit"
                     }
                 }
             }
-            
+
             if(!e.shiftKey) {
                 if(isLetter(elem.innerHTML) && !isLowerCase(elem.innerHTML)) {
                     if(outputSwitch){console.log("wrong!!");}
