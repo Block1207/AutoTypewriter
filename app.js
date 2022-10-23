@@ -3,6 +3,7 @@ var errorSlide;
 var bufferValue;
 var outputSwitch;
 var x;
+var adBlock;
 chrome.storage.sync.get(["typer", "errorSlide", "bufferValue", "fucker", "legit", "outputSwitch"], function (result) {
     toggled = result.typer;
     fucker = result.fucker;
@@ -10,6 +11,7 @@ chrome.storage.sync.get(["typer", "errorSlide", "bufferValue", "fucker", "legit"
     errorSlide = result.errorSlide;
     bufferValue = result.bufferValue;
     outputSwitch = result.outputSwitch;
+    adBlock = true;
     if(outputSwitch){console.log(errorSlide, bufferValue, fucker, legit);};
     var letter = document.getElementById('actualLetter').innerHTML;
     var input = document.getElementById('input_area');
@@ -40,7 +42,7 @@ chrome.storage.sync.get(["typer", "errorSlide", "bufferValue", "fucker", "legit"
     }
 
     function typer() {
-        var x = bufferValue * 10; if(outputSwitch){console.log("BUFFER BUFFER BUFFER || " + x);};
+        var x = 1000 - bufferValue * 10; if(outputSwitch){console.log("BUFFER BUFFER BUFFER || " + x);};
         var max = x;
         var min = max - 150;
         var timer = getRandomInt(min, max)
@@ -229,6 +231,23 @@ chrome.storage.sync.get(["typer", "errorSlide", "bufferValue", "fucker", "legit"
         function isLowerCase(str) {
             return str.toLowerCase() == str;
         }
+    }
+
+    if (adBlock) {
+        function block () {
+            try {
+                var gAd1 = document.getElementById("headerAd");
+                gAd1.style.display = "none";
+                /*
+                var gAd2 = document.getElementById("mys-wrapper");
+                gAd2.style.display = "none";
+                 */
+            } catch (e) {
+                if (outputSwitch){console.log(e);};
+                block();
+            }
+        }
+        block();
     }
 
 
