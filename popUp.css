@@ -15,54 +15,32 @@ body {
     animation: pulsate 1.5s infinite alternate;
     border: 0.15rem solid #fff;
     box-shadow: inset 0 0 60px 2rem rgb(42, 42, 42),
-                inset 0 0 .5rem rgb(255, 255, 255);
+    inset 0 0 .5rem rgb(255, 255, 255);
     border-radius: 7px;
 
-/*
-uncomment to active neon border
-    box-shadow: inset 0 0 0.2rem #fff,
-                      0 0 .2rem #fff,
-                      0 0 2rem #bc13fe,
-                      0 0 0.8rem #bc13fe,
-                      0 0 2.8rem #bc13fe,
-                inset 0 0 .2rem #e1b4ff,
-                inset 0 0 2rem #bc13fe,
-                inset 0 0 0.8rem #bc13fe,
-                inset 0 0 1.3rem #bc13fe;
-*/
+    /*
+    uncomment to active neon border
+        box-shadow: inset 0 0 0.2rem #fff,
+                          0 0 .2rem #fff,
+                          0 0 2rem #bc13fe,
+                          0 0 0.8rem #bc13fe,
+                          0 0 2.8rem #bc13fe,
+                    inset 0 0 .2rem #e1b4ff,
+                    inset 0 0 2rem #bc13fe,
+                    inset 0 0 0.8rem #bc13fe,
+                    inset 0 0 1.3rem #bc13fe;
+    */
 }
-
-.title{
+.title {
     margin-left: auto;
     margin-right: auto;
     margin-top: 13px;
-    margin-bottom: 15px;
+    margin-bottom: 1px;
     font-size: 32px;
     color: white;
     text-decoration: underline;
     text-align: center;
     width: 200px;
-}
-.cuming-soon{
-    pointer-events: none;
-    user-select: none;
-    margin-bottom: 10px;
-}
-.buttons{
-    margin-top: 4px;
-    padding: 0;
-    list-style: none;
-    margin-bottom: 10px;
-    text-align: left;
-    margin-left: 25%;
-    margin-right: auto;
-}
-.sliders {
-    padding-left: 0;
-    margin-bottom: 10px;
-    display: inline-block;
-    outline: none;
-    list-style: none;
 }
 .error{
     padding-bottom: 10px;
@@ -73,10 +51,105 @@ uncomment to active neon border
 #love{
     font-family: "Sofia", sans-serif;
     font-size: 16px;
+    margin-top: 0;
     margin-bottom: 30px;
+}
+/*slider*/
+.sliders {
+    margin-top: 0;
+    padding-left: 0;
+    display: inline-block;
+    outline: none;
+    list-style: none;
+    transition: opacity .2s;
+    -webkit-transition: .2s;
+    opacity: 0.8;
+    font-size: 20px;
+}
+.sliders:hover{
+    opacity: 1;
 }
 
 
+/*input*/
+.cuming-soon{
+    margin-bottom: 10px;
+    width: 90%;
+}
+.cuming-soon[type=password]{
+    width: 90%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 2px solid #797979;
+    border-radius: 4px;
+    background-color: #252525;
+    color: white;
+    font-size: 16px;
+}
 
+/*checkboxes*/
+.buttons{
+    margin-top: 21px;
+    margin-bottom: 0px;
+    padding: 0;
+    list-style: none;
+    text-align: left;
+    margin-left: 15%;
+    margin-right: auto;
+}
+.buttons li {
+    margin-bottom: 20px;
+}
+[type="checkbox"] {
+    position: relative;
+    left: 30px;
+    top: 0px;
+    z-index: 0;
+    -webkit-appearance: none;
+}
+[type="checkbox"] + label {
+    position: relative;
+    display: block;
+    cursor: pointer;
+    font-family: sans-serif;
+    font-size: 22px;
+    line-height: 1.6;
+    padding-left:70px;
+    position: relative;
+    margin-top: -30px;
+}
+[type="checkbox"] + label:before {
+    width: 60px;
+    height: 30px;
+    border-radius: 30px;
+    border: 2px solid #101010;
+    background-color: #101010;
+    content: "";
+    margin-right: 15px;
+    transition: background-color 0.5s linear;
+    z-index: 5;
+    position: absolute;
+    left: 0px;
+}
+[type="checkbox"] + label:after {
+    width: 30px;
+    height: 30px;
+    border-radius: 30px;
+    background-color: #fff;
+    content: "";
+    transition: margin 0.1s linear;
+    box-shadow: 0px 0px 5px #aaa;
+    position: absolute;
+    left: 2px;
+    top: 2px;
+    z-index: 10;
+}
+[type="checkbox"]:checked + label:before {
+    background-color: #2b8718;
+}
+[type="checkbox"]:checked + label:after {
+    margin: 0 0 0 30px;
+}
 
 
