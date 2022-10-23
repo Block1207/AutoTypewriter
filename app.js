@@ -238,6 +238,7 @@ chrome.storage.sync.get(["typer", "errorSlide", "bufferValue", "fucker", "legit"
             try {
                 var gAd1 = document.getElementById("headerAd");
                 gAd1.style.display = "none";
+                //TODO checken wie man die Werbung auf dem "Start-Menu" wegbekommt
                 /*
                 var gAd2 = document.getElementById("mys-wrapper");
                 gAd2.style.display = "none";
