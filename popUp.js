@@ -88,6 +88,12 @@ window.onload = () => {
         fuckEm.checked = result.fucker;
     })
 
-
+    var styleBtn = document.getElementById("styleMenuBtn");
+    var main = document.getElementById("popUp");
+    //var styleMenu = document.getElementById("#ID_FROM_MENU_PAGE");
+    styleBtn.addEventListener("click", (e) => {
+       main.style.display = "none";
+       //styleMenu.style.display = "#BLOCK_OR_SOME_SHIT_LIKE_THAT";
+    } );
 
 }
