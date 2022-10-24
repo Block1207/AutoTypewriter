@@ -5,6 +5,20 @@ body {
     width:280px;
     background-color: rgb(68, 68, 68);
     color: white;
+    background-image: url("notSus.jpeg");
+}
+
+#styleMenuBtn {
+    position: absolute;
+    height: 8vh;
+    width: 15vw;
+    background-color: white;
+    left: 85%;
+    border: none;
+}
+
+#styleMenuBtn:active{
+    background-color: gray;
 }
 
 .main{

@@ -2,6 +2,8 @@ var toggled;
 var errorSlide;
 var bufferValue;
 var outputSwitch;
+var x;
+var adBlock;
 chrome.storage.sync.get(["typer", "errorSlide", "bufferValue", "fucker", "legit", "outputSwitch"], function (result) {
     toggled = result.typer;
     fucker = result.fucker;
@@ -9,6 +11,7 @@ chrome.storage.sync.get(["typer", "errorSlide", "bufferValue", "fucker", "legit"
     errorSlide = result.errorSlide;
     bufferValue = result.bufferValue;
     outputSwitch = result.outputSwitch;
+    adBlock = true;
     if(outputSwitch){console.log(errorSlide, bufferValue, fucker, legit);};
     var letter = document.getElementById('actualLetter').innerHTML;
     var input = document.getElementById('input_area');
@@ -26,7 +29,7 @@ chrome.storage.sync.get(["typer", "errorSlide", "bufferValue", "fucker", "legit"
 
     function start() {
         if(outputSwitch) {console.log("You have " + errorCount + "out of " + errorLimit+ " bot made error('s)");}
-        var fail = getRandomInt(1, 20); console.log(fail);
+        var fail = getRandomInt(1, 20); if(outputSwitch){console.log(fail);};
         if (typeLimit > 5) {
             if (errorCount < errorLimit) {
                 if (fail == 5) {
@@ -39,7 +42,10 @@ chrome.storage.sync.get(["typer", "errorSlide", "bufferValue", "fucker", "legit"
     }
 
     function typer() {
-        var timer = getRandomInt(150, 250)
+        var x = 1000 - bufferValue * 10; if(outputSwitch){console.log("BUFFER BUFFER BUFFER || " + x);};
+        var max = x;
+        var min = max - 150;
+        var timer = getRandomInt(min, max)
 
         var letter = document.getElementById('actualLetter').innerHTML;
         if (letter == "&nbsp;") {
@@ -49,7 +55,7 @@ chrome.storage.sync.get(["typer", "errorSlide", "bufferValue", "fucker", "legit"
         }
 
         setTimeout(function () {
-            console.log(timer)
+            if(outputSwitch){console.log(timer);};
             var letter = document.getElementById('actualLetter').innerHTML;
             if(outputSwitch){console.log('typing: ' + letter);};
             input.dispatchEvent(new KeyboardEvent('keypress', { 'key': letter }));
@@ -225,6 +231,24 @@ chrome.storage.sync.get(["typer", "errorSlide", "bufferValue", "fucker", "legit"
         function isLowerCase(str) {
             return str.toLowerCase() == str;
         }
+    }
+
+    if (adBlock) {
+        function block () {
+            try {
+                var gAd1 = document.getElementById("headerAd");
+                gAd1.style.display = "none";
+                //TODO checken wie man die Werbung auf dem "Start-Menu" wegbekommt
+                /*
+                var gAd2 = document.getElementById("mys-wrapper");
+                gAd2.style.display = "none";
+                 */
+            } catch (e) {
+                if (outputSwitch){console.log(e);};
+                block();
+            }
+        }
+        block();
     }
 
 

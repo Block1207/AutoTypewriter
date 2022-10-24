@@ -32,8 +32,10 @@ window.onload = () => {
 
     //buffer slider
     var bufferSlider = document.getElementById('bufferRange');
-    document.getElementById('bufferValue').innerHTML = "Coming Soon ! I Speed ";
+    var buferValue = document.getElementById("bufferValue");
+    buferValue.innerHTML = "Speed: ";
     bufferSlider.addEventListener("change", (e) => {
+        bufferValue.innerHTML = "Speed: " + e.target.value;
         chrome.storage.sync.set({
             bufferValue: e.target.value
         });
@@ -43,6 +45,7 @@ window.onload = () => {
     })
     chrome.storage.sync.get(["bufferValue"], function (result) {
         bufferSlider.value = result.bufferValue;
+        bufferValue.innerHTML = "Speed: " + result.bufferValue;
     })
 
     let legitMode = document.getElementById('legitSwitch')
@@ -85,6 +88,12 @@ window.onload = () => {
         fuckEm.checked = result.fucker;
     })
 
-
+    var styleBtn = document.getElementById("styleMenuBtn");
+    var main = document.getElementById("popUp");
+    //var styleMenu = document.getElementById("#ID_FROM_MENU_PAGE");
+    styleBtn.addEventListener("click", (e) => {
+       main.style.display = "none";
+       //styleMenu.style.display = "#BLOCK_OR_SOME_SHIT_LIKE_THAT";
+    } );
 
 }
