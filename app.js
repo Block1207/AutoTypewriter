@@ -4,6 +4,8 @@ var bufferValue;
 var outputSwitch;
 var x;
 var adBlock;
+var wordCount;
+var rInt;
 chrome.storage.sync.get(["typer", "errorSlide", "bufferValue", "fucker", "legit", "outputSwitch"], function (result) {
     toggled = result.typer;
     fucker = result.fucker;
@@ -12,6 +14,8 @@ chrome.storage.sync.get(["typer", "errorSlide", "bufferValue", "fucker", "legit"
     bufferValue = result.bufferValue;
     outputSwitch = result.outputSwitch;
     adBlock = true;
+    wordCount = 0;
+    rInt = 0;
     if(outputSwitch){console.log(errorSlide, bufferValue, fucker, legit);};
     var letter = document.getElementById('actualLetter').innerHTML;
     var input = document.getElementById('input_area');
@@ -42,7 +46,15 @@ chrome.storage.sync.get(["typer", "errorSlide", "bufferValue", "fucker", "legit"
     }
 
     function typer() {
+        if(outputSwitch){console.log("WordCount === " + wordCount);};
         var x = 1000 - bufferValue * 10; if(outputSwitch){console.log("BUFFER BUFFER BUFFER || " + x);};
+        if (wordCount % 2) {
+            var rInt = getRandomInt(0, 4);
+            if (rInt % 2) {
+                x = x / 2;
+                if(outputSwitch){console.log("SKIP SKIP SKIP !!!");};
+            }
+        };
         var max = x;
         var min = max - 150;
         var timer = getRandomInt(min, max)
@@ -52,6 +64,7 @@ chrome.storage.sync.get(["typer", "errorSlide", "bufferValue", "fucker", "legit"
             if (outputSwitch){console.log("---SPACE---");};
             input.dispatchEvent(new KeyboardEvent('keypress', { 'key': letter }));
             typeLimit = typeLimit + 1;
+            wordCount = wordCount + 1;
         }
 
         setTimeout(function () {
