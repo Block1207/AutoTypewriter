@@ -1,11 +1,15 @@
-var toggled;
-var errorSlide;
-var bufferValue;
-var outputSwitch;
-var x;
-var adBlock;
-var wordCount;
-var rInt;
+let toggled;
+let errorSlide;
+let bufferValue;
+let outputSwitch;
+let fucker;
+let legit;
+let x;
+let adBlock;
+let wordCount;
+let rInt;
+let letter;
+let url;
 chrome.storage.sync.get(["typer", "errorSlide", "bufferValue", "fucker", "legit", "outputSwitch"], function (result) {
     toggled = result.typer;
     fucker = result.fucker;
@@ -13,15 +17,20 @@ chrome.storage.sync.get(["typer", "errorSlide", "bufferValue", "fucker", "legit"
     errorSlide = result.errorSlide;
     bufferValue = result.bufferValue;
     outputSwitch = result.outputSwitch;
+    url = location.href;
     adBlock = true;
     wordCount = 0;
     rInt = 0;
     if(outputSwitch){console.log(errorSlide, bufferValue, fucker, legit);};
-    var letter = document.getElementById('actualLetter').innerHTML;
-    var input = document.getElementById('input_area');
-    var errorCount = 0;
-    var errorLimit = errorSlide;
-    var typeLimit = 0;
+    try {
+        letter = document.getElementById('actualLetter').innerHTML;
+    } catch {
+        letter = null;
+    }
+    let input = document.getElementById('input_area');
+    let errorCount = 0;
+    let errorLimit = errorSlide;
+    let typeLimit = 0;
     if(outputSwitch) {console.log("[" + letter + "]");}
 
     function getRandomInt(min, max) {
@@ -33,7 +42,7 @@ chrome.storage.sync.get(["typer", "errorSlide", "bufferValue", "fucker", "legit"
 
     function start() {
         if(outputSwitch) {console.log("You have " + errorCount + "out of " + errorLimit+ " bot made error('s)");}
-        var fail = getRandomInt(1, 20); if(outputSwitch){console.log(fail);};
+        let fail = getRandomInt(1, 20); if(outputSwitch){console.log(fail);};
         if (typeLimit > 5) {
             if (errorCount < errorLimit) {
                 if (fail == 5) {
@@ -47,19 +56,19 @@ chrome.storage.sync.get(["typer", "errorSlide", "bufferValue", "fucker", "legit"
 
     function typer() {
         if(outputSwitch){console.log("WordCount === " + wordCount);};
-        var x = 1000 - bufferValue * 10; if(outputSwitch){console.log("BUFFER BUFFER BUFFER || " + x);};
+        let x = 1000 - bufferValue * 10; if(outputSwitch){console.log("BUFFER BUFFER BUFFER || " + x);};
         if (wordCount % 2) {
-            var rInt = getRandomInt(0, 4);
+            let rInt = getRandomInt(0, 4);
             if (rInt % 2) {
                 x = x / 2;
                 if(outputSwitch){console.log("SKIP SKIP SKIP !!!");};
             }
         };
-        var max = x;
-        var min = max - 150;
-        var timer = getRandomInt(min, max)
+        let max = x;
+        let min = max - 150;
+        let timer = getRandomInt(min, max)
 
-        var letter = document.getElementById('actualLetter').innerHTML;
+        letter = document.getElementById('actualLetter').innerHTML;
         if (letter == "&nbsp;") {
             if (outputSwitch){console.log("---SPACE---");};
             input.dispatchEvent(new KeyboardEvent('keypress', { 'key': letter }));
@@ -69,7 +78,7 @@ chrome.storage.sync.get(["typer", "errorSlide", "bufferValue", "fucker", "legit"
 
         setTimeout(function () {
             if(outputSwitch){console.log(timer);};
-            var letter = document.getElementById('actualLetter').innerHTML;
+            letter = document.getElementById('actualLetter').innerHTML;
             if(outputSwitch){console.log('typing: ' + letter);};
             input.dispatchEvent(new KeyboardEvent('keypress', { 'key': letter }));
             start();
@@ -78,8 +87,11 @@ chrome.storage.sync.get(["typer", "errorSlide", "bufferValue", "fucker", "legit"
     };
 
     if (toggled) {
-        document.dispatchEvent(new KeyboardEvent('keypress', { 'key': "&nbsp;" }))
-        start();
+        if(!url.endsWith("runLevel")) location.href = "/index.php?r=typewriter/runLevel";
+        if(typer != null) {
+            document.dispatchEvent(new KeyboardEvent('keypress', { 'key': "&nbsp;" }))
+            start()
+        }
     }
 
     if (fucker) {
@@ -90,20 +102,21 @@ chrome.storage.sync.get(["typer", "errorSlide", "bufferValue", "fucker", "legit"
 
         function type() {
             setTimeout(function () {
-                var input = document.getElementById('input_area');
-                var letter = document.getElementById('actualLetter').innerHTML; console.log(letter);
+                let input = document.getElementById('input_area');
+                letter = document.getElementById('actualLetter').innerHTML;
+                if(outputSwitch) {console.log(letter);}
                 input.dispatchEvent(new KeyboardEvent('keypress', { 'key': letter }));
                 repeat();
-            }, 0)
+            }, 5)
         }
 
         type();
     }
-     while(fucker) {
-    setTimeout(function () {
-             if (outputSwitch) {console.log("FUCK EM !!!");};
-    },150)
-     }
+    while(fucker) {
+        //setTimeout(function () {
+        //       if (outputSwitch) {console.log("FUCK EM !!!");};
+        //},150)
+    }
 
     if (legit) {
         let elem = document.getElementById("actualLetter")
@@ -248,23 +261,23 @@ chrome.storage.sync.get(["typer", "errorSlide", "bufferValue", "fucker", "legit"
         }
     }
 
-    if (adBlock) {
-        function block () {
-            try {
-                var gAd1 = document.getElementById("headerAd");
-                gAd1.style.display = "none";
-                //TODO checken wie man die Werbung auf dem "Start-Menu" wegbekommt
-                /*
-                var gAd2 = document.getElementById("mys-wrapper");
-                gAd2.style.display = "none";
-                 */
-            } catch (e) {
-                if (outputSwitch){console.log(e);};
-                block();
-            }
-        }
-        block();
-    }
+    // if (adBlock) {
+    //     function block () {
+    //         try {
+    //             let gAd1 = document.getElementById("headerAd");
+    //             gAd1.style.display = "none";
+    //             //TODO checken wie man die Werbung auf dem "Start-Menu" wegbekommt
+    //             /*
+    //             let gAd2 = document.getElementById("mys-wrapper");
+    //             gAd2.style.display = "none";
+    //              */
+    //         } catch (e) {
+    //             if (outputSwitch){console.log(e);};
+    //             block();
+    //         }
+    //     }
+    //     block();
+    // }
 
 
 })

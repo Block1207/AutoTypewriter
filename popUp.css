@@ -95,7 +95,7 @@ body {
     margin-right: 10px;
     text-align: center;
     width: 100%;
-    height: 98vh;
+    height: 99vh;
     background: rgb(87, 87, 87);
     animation: pulsate 1.5s infinite alternate;
     border: 0.15rem solid #fff;
@@ -105,4 +105,12 @@ body {
     display: none;
 }
 
-
+.styleButtons{
+    margin-top: 4px;
+    padding: 0;
+    list-style: none;
+    margin-bottom: 10px;
+    text-align: left;
+    margin-left: 25%;
+    margin-right: auto;
+}

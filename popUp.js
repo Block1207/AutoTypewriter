@@ -1,7 +1,7 @@
-var menu = false;
+let menu = false
 window.onload = () => {
-    var fuck = false;
-    menu = true;
+    let fuck = false;
+    let menu = true;
     let onSwitch = document.getElementById('onSwitch')
     onSwitch.addEventListener("change", (e) => {
         chrome.storage.sync.set({
@@ -33,8 +33,8 @@ window.onload = () => {
     })
 
     //buffer slider
-    var bufferSlider = document.getElementById('bufferRange');
-    var buferValue = document.getElementById("bufferValue");
+    let bufferSlider = document.getElementById('bufferRange');
+    let buferValue = document.getElementById("bufferValue");
     buferValue.innerHTML = "Speed: ";
     bufferSlider.addEventListener("change", (e) => {
         bufferValue.innerHTML = "Speed: " + e.target.value;
@@ -90,10 +90,10 @@ window.onload = () => {
         fuckEm.checked = result.fucker;
     })
 
-    var styleBtn = document.getElementById("styleMenuBtn");
-    var main = document.getElementById("popUp");
-    var styleMenu = document.getElementById("styleMenu");
-    var menu = false;
+    let styleBtn = document.getElementById("styleMenuBtn");
+    let main = document.getElementById("popUp");
+    let styleMenu = document.getElementById("styleMenu");
+    menu = false;
     styleBtn.addEventListener("click", (e) => {
         if (menu) {
             main.style.display = "block";
@@ -106,6 +106,6 @@ window.onload = () => {
             styleMenu.style.display = "block";
             menu = true;
         }
-    } );
+    });
 
 }
