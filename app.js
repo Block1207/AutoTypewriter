@@ -99,9 +99,11 @@ chrome.storage.sync.get(["typer", "errorSlide", "bufferValue", "fucker", "legit"
 
         type();
     }
-    // while(fucker) {
-    //     if (outputSwitch) {console.log("FUCK EM !!!");};
-    // }
+     while(fucker) {
+    setTimeout(function () {
+             if (outputSwitch) {console.log("FUCK EM !!!");};
+    },150)
+     }
 
     if (legit) {
         let elem = document.getElementById("actualLetter")

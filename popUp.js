@@ -1,6 +1,7 @@
+var menu = false;
 window.onload = () => {
     var fuck = false;
-    var menu = true;
+    menu = true;
     let onSwitch = document.getElementById('onSwitch')
     onSwitch.addEventListener("change", (e) => {
         chrome.storage.sync.set({
@@ -92,13 +93,19 @@ window.onload = () => {
     var styleBtn = document.getElementById("styleMenuBtn");
     var main = document.getElementById("popUp");
     var styleMenu = document.getElementById("styleMenu");
+    var menu = false;
     styleBtn.addEventListener("click", (e) => {
         if (menu) {
-            main.style.display = "none";
-            styleMenu.style.display = "block";
+            main.style.display = "block";
+            styleMenu.style.display = "none";
             console.log(main.style.display);
             console.log(styleMenu.style.display);
-        } else []
+            menu = false;
+        } else{
+            main.style.display = "none";
+            styleMenu.style.display = "block";
+            menu = true;
+        }
     } );
 
 }
