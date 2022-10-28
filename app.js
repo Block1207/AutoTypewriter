@@ -87,7 +87,13 @@ chrome.storage.sync.get(["typer", "errorSlide", "bufferValue", "fucker", "legit"
     };
 
     if (toggled) {
-        if(!url.endsWith("runLevel")) location.href = "/index.php?r=typewriter/runLevel";
+        if(!url.endsWith("runLevel")) {
+            if (outputSwitch){console.log("Waiting for timer, to go to the next level");};
+            setTimeout(function ()
+                if (outputSwitch) {console.log("And go !!!");};
+                location.href = "/index.php?r=typewriter/runLevel";
+            }, getRandomInt(2,15) * 10)
+        }
         if(typer != null) {
             document.dispatchEvent(new KeyboardEvent('keypress', { 'key': "&nbsp;" }))
             start()
