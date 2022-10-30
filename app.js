@@ -89,7 +89,7 @@ chrome.storage.sync.get(["typer", "errorSlide", "bufferValue", "fucker", "legit"
     if (toggled) {
         if(!url.endsWith("runLevel")) {
             if (outputSwitch){console.log("Waiting for timer, to go to the next level");};
-            setTimeout(function ()
+            setTimeout(function () {
                 if (outputSwitch) {console.log("And go !!!");};
                 location.href = "/index.php?r=typewriter/runLevel";
             }, getRandomInt(2,15) * 10)
