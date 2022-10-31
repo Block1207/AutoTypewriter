@@ -1,7 +1,7 @@
 {
     "manifest_version" : 3,
     "name" : "Typefucker",
-    "version" : "B2.0",
+    "version" : "1.5",
     "description" : "Tipp-'hilfe', für den Typewriter, von Bl0cks1; PS: gemacht, mit lieve an den herrn Praster !",
     "content_scripts" : [
         {
