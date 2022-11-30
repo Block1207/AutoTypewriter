@@ -2,7 +2,8 @@ let menu = false
 window.onload = () => {
     let fuck = false;
     let menu = true;
-    let onSwitch = document.getElementById('onSwitch')
+    let onSwitch = document.getElementById('onSwitch');
+    let fullAuto = document.getElementById('fullAutoSwitch');
     onSwitch.addEventListener("change", (e) => {
         chrome.storage.sync.set({
             typer: e.target.checked
@@ -10,10 +11,22 @@ window.onload = () => {
         chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
             chrome.tabs.reload(tabs[0].id);
         });
-    })
+    });
     chrome.storage.sync.get(["typer"], function (result) {
         onSwitch.checked = result.typer;
-    })
+    });
+
+    fullAuto.addEventListener("change", (e) => {
+        chrome.storage.sync.set({
+            fullAuto: e.target.checked
+        })
+        chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+            chrome.tabs.reload(tabs[0].id);
+        });
+    });
+    chrome.storage.sync.get(["fullAuto"], function (result) {
+        fullAuto.checked = result.fullAuto;
+    });
 
     let errorSlider = document.getElementById("errorRange");
     let errorValue = document.getElementById("errorValue");

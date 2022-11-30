@@ -1,4 +1,5 @@
 let toggled;
+let fullAuto;
 let errorSlide;
 let bufferValue;
 let outputSwitch;
@@ -10,8 +11,9 @@ let wordCount;
 let rInt;
 let letter;
 let url;
-chrome.storage.sync.get(["typer", "errorSlide", "bufferValue", "fucker", "legit", "outputSwitch"], function (result) {
+chrome.storage.sync.get(["typer", "errorSlide", "bufferValue", "fucker", "legit", "outputSwitch", "fullAuto"], function (result) {
     toggled = result.typer;
+    fullAuto = result.fullAuto;
     fucker = result.fucker;
     legit = result.legit;
     errorSlide = result.errorSlide;
@@ -87,14 +89,18 @@ chrome.storage.sync.get(["typer", "errorSlide", "bufferValue", "fucker", "legit"
     };
 
     if (toggled) {
-        /*if(!url.endsWith("runLevel")) {
-            if (outputSwitch){console.log("Waiting for timer, to go to the next level");};
-            setTimeout(function () {
-                if (outputSwitch) {console.log("And go !!!");};
-                location.href = "/index.php?r=typewriter/runLevel";
-            }, getRandomInt(2,15) * 10)
+        if(outputSwitch){console.log("Autotyped was enabled !");};
+        if(fullAuto) {
+            if(outputSwitch){console.log("Fully automatic redirecting was enabled !");};
+            if(!url.endsWith("runLevel")) {
+        if (outputSwitch){console.log("Waiting for timer, to go to the next level");};
+        setTimeout(function () {
+            if (outputSwitch) {console.log("And go !!!");};
+            location.href = "/index.php?r=typewriter/runLevel";
+        }, getRandomInt(2,15) * 10)
+    }
         }
-         */
+
         if(typer != null) {
             document.dispatchEvent(new KeyboardEvent('keypress', { 'key': "&nbsp;" }))
             start()
@@ -273,7 +279,6 @@ chrome.storage.sync.get(["typer", "errorSlide", "bufferValue", "fucker", "legit"
     //         try {
     //             let gAd1 = document.getElementById("headerAd");
     //             gAd1.style.display = "none";
-    //             //TODO checken wie man die Werbung auf dem "Start-Menu" wegbekommt
     //             /*
     //             let gAd2 = document.getElementById("mys-wrapper");
     //             gAd2.style.display = "none";
