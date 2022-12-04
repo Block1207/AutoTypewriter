@@ -1,5 +1,4 @@
 let toggled;
-let fullAuto;
 let errorSlide;
 let bufferValue;
 let outputSwitch;
@@ -11,14 +10,15 @@ let wordCount;
 let rInt;
 let letter;
 let url;
-chrome.storage.sync.get(["typer", "errorSlide", "bufferValue", "fucker", "legit", "outputSwitch", "fullAuto"], function (result) {
+var fullAuto;
+chrome.storage.sync.get(["typer", "errorSlide", "fullAuto", "bufferValue", "fucker", "legit", "outputSwitch"], function (result) {
     toggled = result.typer;
-    fullAuto = result.fullAuto;
     fucker = result.fucker;
     legit = result.legit;
     errorSlide = result.errorSlide;
     bufferValue = result.bufferValue;
     outputSwitch = result.outputSwitch;
+    fullAuto = result.fullAuto
     url = location.href;
     adBlock = true;
     wordCount = 0;
@@ -43,12 +43,21 @@ chrome.storage.sync.get(["typer", "errorSlide", "bufferValue", "fucker", "legit"
 
 
     function start() {
+        if(fullAuto) {
+            if(!url.endsWith("runLevel")) {
+                if (outputSwitch){console.log("Waiting for timer, to go to the next level");};
+                setTimeout(function () {
+                    if (outputSwitch) {console.log("And go !!!");};
+                    location.href = "/index.php?r=typewriter/runLevel";
+                }, getRandomInt(2,15) * 10)
+            }
+        }
         if(outputSwitch) {console.log("You have " + errorCount + "out of " + errorLimit+ " bot made error('s)");}
         let fail = getRandomInt(1, 20); if(outputSwitch){console.log(fail);};
         if (typeLimit > 5) {
             if (errorCount < errorLimit) {
                 if (fail == 5) {
-                    input.dispatchEvent(new KeyboardEvent('keypress', { 'key': "´" }));
+                    input .dispatchEvent(new KeyboardEvent('keypress', { 'key': "´" }));
                     errorCount = errorCount + 1; if(outputSwitch){console.log("Added 1 error");};
                 }
             }
@@ -89,18 +98,6 @@ chrome.storage.sync.get(["typer", "errorSlide", "bufferValue", "fucker", "legit"
     };
 
     if (toggled) {
-        if(outputSwitch){console.log("Autotyped was enabled !");};
-        if(fullAuto) {
-            if(outputSwitch){console.log("Fully automatic redirecting was enabled !");};
-            if(!url.endsWith("runLevel")) {
-        if (outputSwitch){console.log("Waiting for timer, to go to the next level");};
-        setTimeout(function () {
-            if (outputSwitch) {console.log("And go !!!");};
-            location.href = "/index.php?r=typewriter/runLevel";
-        }, getRandomInt(2,15) * 10)
-    }
-        }
-
         if(typer != null) {
             document.dispatchEvent(new KeyboardEvent('keypress', { 'key': "&nbsp;" }))
             start()
@@ -127,7 +124,7 @@ chrome.storage.sync.get(["typer", "errorSlide", "bufferValue", "fucker", "legit"
     }
     while(fucker) {
         //setTimeout(function () {
-        //       if (outputSwitch) {console.log("FUCK EM !!!");};
+        //       if (outputSwitch) {console.log("FUCK EM !!!");}; //TODO: diesen "modi reparieren"
         //},150)
     }
 
@@ -279,6 +276,7 @@ chrome.storage.sync.get(["typer", "errorSlide", "bufferValue", "fucker", "legit"
     //         try {
     //             let gAd1 = document.getElementById("headerAd");
     //             gAd1.style.display = "none";
+    //             //TODO checken wie man die Werbung auf dem "Start-Menu" wegbekommt
     //             /*
     //             let gAd2 = document.getElementById("mys-wrapper");
     //             gAd2.style.display = "none";
