@@ -1,20 +1,39 @@
-console.log("TYPEHACKERWORKING BITTTTCHHH")
-var toggled;
-var errorSlide;
-var bufferValue;
-browser.storage.sync.get(["typer", "errorSlide", "bufferValue", "fucker", "legit"], function (result) {
+let toggled;
+let errorSlide;
+let bufferValue;
+let outputSwitch;
+let fucker;
+let legit;
+let x;
+let adBlock;
+let wordCount;
+let rInt;
+let letter;
+let url;
+var fullAuto;
+browser.storage.sync.get(["typer", "errorSlide", "fullAuto", "bufferValue", "fucker", "legit", "outputSwitch"], function (result) {
     toggled = result.typer;
     fucker = result.fucker;
     legit = result.legit;
     errorSlide = result.errorSlide;
     bufferValue = result.bufferValue;
-    console.log(errorSlide, bufferValue, fucker, legit)
-    var letter = document.getElementById('actualLetter').innerHTML;
-    var input = document.getElementById('input_area');
-    var errorCount = 0;
-    var errorLimit = errorSlide;
-    var typeLimit = 0;
-    console.log(letter);
+    outputSwitch = result.outputSwitch;
+    fullAuto = result.fullAuto
+    url = location.href;
+    adBlock = true;
+    wordCount = 0;
+    rInt = 0;
+    if (outputSwitch) { console.log(errorSlide, bufferValue, fucker, legit); };
+    try {
+        letter = document.getElementById("text_todo").firstChild.innerHTML;
+    } catch {
+        letter = null;
+    }
+    let input = document.getElementById('input_area');
+    let errorCount = 0;
+    let errorLimit = errorSlide;
+    let typeLimit = 0;
+    if (outputSwitch) { console.log("[" + letter + "]"); }
 
     function getRandomInt(min, max) {
         min = Math.ceil(min);
@@ -24,14 +43,22 @@ browser.storage.sync.get(["typer", "errorSlide", "bufferValue", "fucker", "legit
 
 
     function start() {
-        console.log("You have a maximum of " + errorLimit + " botmade errors !")
-        console.log("You have " + errorCount + " bot made error('s)");
-        var fail = getRandomInt(1, 20); console.log(fail);
+        if (fullAuto) {
+            if (!url.endsWith("runLevel")) {
+                if (outputSwitch) { console.log("Waiting for timer, to go to the next level"); };
+                setTimeout(function () {
+                    if (outputSwitch) { console.log("And go !!!"); };
+                    location.href = "/index.php?r=typewriter/runLevel";
+                }, getRandomInt(2, 15) * 10)
+            }
+        }
+        if (outputSwitch) { console.log("You have " + errorCount + "out of " + errorLimit + " bot made error('s)"); }
+        let fail = getRandomInt(1, 20); if (outputSwitch) { console.log(fail); };
         if (typeLimit > 5) {
             if (errorCount < errorLimit) {
                 if (fail == 5) {
                     input.dispatchEvent(new KeyboardEvent('keypress', { 'key': "´" }));
-                    errorCount = errorCount + 1; console.log("Added 1 error");
+                    errorCount = errorCount + 1; if (outputSwitch) { console.log("Added 1 error"); };
                 }
             }
         }
@@ -39,32 +66,45 @@ browser.storage.sync.get(["typer", "errorSlide", "bufferValue", "fucker", "legit
     }
 
     function typer() {
-        var timer = getRandomInt(150, 250)
+        if (outputSwitch) { console.log("WordCount === " + wordCount); };
+        let x = 1000 - bufferValue * 10; if (outputSwitch) { console.log("BUFFER BUFFER BUFFER || " + x); };
+        if (wordCount % 2) {
+            let rInt = getRandomInt(0, 4);
+            if (rInt % 2) {
+                x = x / 2;
+                if (outputSwitch) { console.log("SKIP SKIP SKIP !!!"); };
+            }
+        };
+        let max = x;
+        let min = max - 150;
+        let timer = getRandomInt(min, max)
 
-        var letter = document.getElementById('actualLetter').innerHTML;
+        letter = document.getElementById("text_todo").firstChild.innerHTML;
         if (letter == "&nbsp;") {
-            console.log("---SPACE---")
+            if (outputSwitch) { console.log("---SPACE---"); };
             input.dispatchEvent(new KeyboardEvent('keypress', { 'key': letter }));
             typeLimit = typeLimit + 1;
+            wordCount = wordCount + 1;
         }
 
         setTimeout(function () {
-            console.log(timer)
-            var letter = document.getElementById('actualLetter').innerHTML;
-            console.log('typing: ' + letter);
+            if (outputSwitch) { console.log(timer); };
+            letter = document.getElementById("text_todo").firstChild.innerHTML;
+            if (outputSwitch) { console.log('typing: ' + letter); };
             input.dispatchEvent(new KeyboardEvent('keypress', { 'key': letter }));
             start();
         }, timer);
-        console.log('---')
+        if (outputSwitch) { console.log('---'); };
     };
 
     if (toggled) {
-        document.dispatchEvent(new KeyboardEvent('keypress', { 'key': "&nbsp;" }))
-        start();
+        if (typer != null) {
+            document.dispatchEvent(new KeyboardEvent('keypress', { 'key': "&nbsp;" }))
+            start()
+        }
     }
 
     if (fucker) {
-        console.log("FUCK Em")
 
         document.dispatchEvent(new KeyboardEvent('keypress', { 'key': '&nbsp;' }))
 
@@ -72,14 +112,20 @@ browser.storage.sync.get(["typer", "errorSlide", "bufferValue", "fucker", "legit
 
         function type() {
             setTimeout(function () {
-                var input = document.getElementById('input_area');
-                var letter = document.getElementById('actualLetter').innerHTML; console.log(letter);
+                let input = document.getElementById('input_area');
+                letter = document.getElementById("text_todo").firstChild.innerHTML;
+                if (outputSwitch) { console.log(letter); }
                 input.dispatchEvent(new KeyboardEvent('keypress', { 'key': letter }));
                 repeat();
-            }, 0)
+            }, 5)
         }
 
         type();
+    }
+    while (fucker) {
+        //setTimeout(function () {
+        //       if (outputSwitch) {console.log("FUCK EM !!!");}; //TODO: diesen "modi reparieren"
+        //},150)
     }
 
     if (legit) {
@@ -87,6 +133,7 @@ browser.storage.sync.get(["typer", "errorSlide", "bufferValue", "fucker", "legit
         let inputArea = document.getElementById('input_area');
         inputArea.addEventListener("keydown", (e) => {
             elem = document.getElementById("actualLetter")
+            //console.log(e.code, elem.textContent)
             if (
                 (elem.innerHTML != "&nbsp;" && e.code == "Space")
                 || (elem.innerHTML.toLowerCase() != "ö" && e.code == "Semicolon")
@@ -107,7 +154,7 @@ browser.storage.sync.get(["typer", "errorSlide", "bufferValue", "fucker", "legit
                 || (elem.innerHTML != "9" && e.code == "Digit9" && !e.shiftKey)
                 || (elem.innerHTML != "0" && e.code == "Digit0" && !e.shiftKey)
             ) {
-                console.log("wrong!!");
+                if (outputSwitch) { console.log("wrong!!"); };
                 e.cancelable = true;
                 e.stopImmediatePropagation()
                 e.stopPropagation()
@@ -143,36 +190,74 @@ browser.storage.sync.get(["typer", "errorSlide", "bufferValue", "fucker", "legit
                 && e.code != "Digit9"
                 && e.code != "Digit0"
             ) {
-                console.log("wrong!!");
+                if (outputSwitch) { console.log("wrong!!"); }
                 e.cancelable = true;
                 e.stopImmediatePropagation();
                 e.stopPropagation();
                 e.preventDefault();
             }
 
+            // german - english layout
             if ((elem.innerHTML.toLowerCase() != "y" && e.code == "KeyZ") || (elem.innerHTML.toLowerCase() != "z" && e.code == "KeyY")) {
-                console.log("wrong!!");
+                if (outputSwitch) { console.log("wrong!!"); };
                 e.cancelable = true;
                 e.stopImmediatePropagation();
                 e.stopPropagation();
                 e.preventDefault();
             }
 
+            //shift
             if (e.shiftKey) {
                 if (isLetter(elem.innerHTML) && isLowerCase(elem.innerHTML)) {
-                    console.log("wrong!!");
+                    if (outputSwitch) { console.log("wrong!!"); }
                     e.cancelable = true;
                     e.stopImmediatePropagation();
                     e.stopPropagation();
                     e.preventDefault();
                 } else {
                     if ((elem.innerHTML != "(" && e.code == "Digit8") || (elem.innerHTML != ")" && e.code == "Digit9")) {
-                        console.log("wrong!!");
+                        if (outputSwitch) { console.log("wrong!!"); }
                         e.cancelable = true;
                         e.stopImmediatePropagation();
                         e.stopPropagation();
                         e.preventDefault();
                     }
+                    if (elem.innerHTML == "&nbsp;") {
+                        if (outputSwitch) { console.log("wrong!!"); }
+                        e.cancelable = true;
+                        e.stopImmediatePropagation();
+                        e.stopPropagation();
+                        e.preventDefault();
+                    }
+                    if (!isLowerCase(elem.innerHTML) && (
+                        e.code == "Digit1"
+                        || e.code == "Digit2"
+                        || e.code == "Digit3"
+                        || e.code == "Digit4"
+                        || e.code == "Digit5"
+                        || e.code == "Digit6"
+                        || e.code == "Digit7"
+                        || e.code == "Digit8"
+                        || e.code == "Digit9"
+                        || e.code == "Digit0"
+                    )
+                    ) {
+                        if (outputSwitch) { console.log("wrong!!"); }
+                        e.cancelable = true;
+                        e.stopImmediatePropagation();
+                        e.stopPropagation();
+                        e.preventDefault();
+                    }
+                }
+            }
+
+            if (!e.shiftKey) {
+                if (isLetter(elem.innerHTML) && !isLowerCase(elem.innerHTML)) {
+                    if (outputSwitch) { console.log("wrong!!"); }
+                    e.cancelable = true;
+                    e.stopImmediatePropagation();
+                    e.stopPropagation();
+                    e.preventDefault();
                 }
             }
         })
@@ -185,6 +270,24 @@ browser.storage.sync.get(["typer", "errorSlide", "bufferValue", "fucker", "legit
             return str.toLowerCase() == str;
         }
     }
+
+    // if (adBlock) {
+    //     function block () {
+    //         try {
+    //             let gAd1 = document.getElementById("headerAd");
+    //             gAd1.style.display = "none";
+    //             //TODO checken wie man die Werbung auf dem "Start-Menu" wegbekommt
+    //             /*
+    //             let gAd2 = document.getElementById("mys-wrapper");
+    //             gAd2.style.display = "none";
+    //              */
+    //         } catch (e) {
+    //             if (outputSwitch){console.log(e);};
+    //             block();
+    //         }
+    //     }
+    //     block();
+    // }
 
 
 })
