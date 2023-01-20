@@ -1,73 +1,124 @@
+let menu = false
 window.onload = () => {
-    var fuck = false;
-    let onSwitch = document.getElementById('onSwitch')
+    let fuck = false;
+    let menu = true;
+    let onSwitch = document.getElementById('onSwitch');
+    let fullAuto = document.getElementById('fullAutoSwitch');
     onSwitch.addEventListener("change", (e) => {
-        browser.storage.sync.set({
+        chrome.storage.sync.set({
             typer: e.target.checked
         })
-        browser.tabs.query({ active: true, currentWindow: true , url: "*://*.typewriter.at/*"}, function (tabs) {
-            browser.tabs.reload(tabs[0].id);
+        chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+            chrome.tabs.reload(tabs[0].id);
         });
-    })
-    browser.storage.sync.get(["typer"], function (result) {
+    });
+    chrome.storage.sync.get(["typer"], function (result) {
         onSwitch.checked = result.typer;
-    })
+    });
+
+    fullAuto.addEventListener("change", (e) => {
+        chrome.storage.sync.set({
+            fullAuto: e.target.checked
+        })
+        chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+            chrome.tabs.reload(tabs[0].id);
+        });
+    });
+    chrome.storage.sync.get(["fullAuto"], function (result) {
+        fullAuto.checked = result.fullAuto;
+    });
 
     let errorSlider = document.getElementById("errorRange");
     let errorValue = document.getElementById("errorValue");
 
-    browser.storage.sync.get(["errorSlide"], function (result) {
+    chrome.storage.sync.get(["errorSlide"], function (result) {
         errorSlider.value = result.errorSlide;
         errorValue.innerHTML = "Maximal Errors : " + result.errorSlide;
     })
     errorSlider.addEventListener("change", (e) => {
         errorValue.innerHTML = "Maximal Errors : " + errorSlider.value;
-        browser.storage.sync.set({
+        chrome.storage.sync.set({
             errorSlide: e.target.value
         });
-        browser.tabs.query({ active: true, currentWindow: true , url: "*://*.typewriter.at/*"}, function (tabs) {
-            browser.tabs.reload(tabs[0].id);
+        chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+            chrome.tabs.reload(tabs[0].id);
         });
     })
 
-    var bufferSlider = document.getElementById('bufferRange');
-    document.getElementById('bufferValue').innerHTML = "Coming Soon ! I Speed ";
+    //buffer slider
+    let bufferSlider = document.getElementById('bufferRange');
+    let buferValue = document.getElementById("bufferValue");
+    buferValue.innerHTML = "Speed: ";
     bufferSlider.addEventListener("change", (e) => {
-        browser.storage.sync.set({
+        bufferValue.innerHTML = "Speed: " + e.target.value;
+        chrome.storage.sync.set({
             bufferValue: e.target.value
         });
-        browser.tabs.query({ active: true, currentWindow: true , url: "*://*.typewriter.at/*"}, function (tabs) {
-            browser.tabs.reload(tabs[0].id);
+        chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+            chrome.tabs.reload(tabs[0].id);
         });
     })
-    browser.storage.sync.get(["bufferValue"], function (result) {
+    chrome.storage.sync.get(["bufferValue"], function (result) {
         bufferSlider.value = result.bufferValue;
+        bufferValue.innerHTML = "Speed: " + result.bufferValue;
     })
 
     let legitMode = document.getElementById('legitSwitch')
     legitMode.addEventListener("change", (e) => {
-        browser.storage.sync.set({
+        chrome.storage.sync.set({
             legit: e.target.checked
         })
-        browser.tabs.query({ active: true, currentWindow: true , url: "*://*.typewriter.at/*"}, function (tabs) {
-            browser.tabs.reload(tabs[0].id);
+        chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+            chrome.tabs.reload(tabs[0].id);
         });
     })
-    browser.storage.sync.get(["legit"], function (result) {
+    chrome.storage.sync.get(["legit"], function (result) {
         legitMode.checked = result.legit;
     })
 
-    let fuckEm = document.getElementById('fuckEm')
-    fuckEm.addEventListener("change", (e) => {
-        browser.storage.sync.set({
-            fucker: e.target.checked
+    let outputSwitch = document.getElementById('outputSwitch')
+    outputSwitch.addEventListener("change", (e) => {
+        chrome.storage.sync.set({
+            outputSwitch: e.target.checked
         })
-        browser.tabs.query({ active: true, currentWindow: true , url: "*://*.typewriter.at/*"}, function (tabs) {
-            browser.tabs.reload(tabs[0].id);
+        chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+            chrome.tabs.reload(tabs[0].id);
         });
     })
-    browser.storage.sync.get(["fucker"], function (result) {
+    chrome.storage.sync.get(["outputSwitch"], function (result) {
+        outputSwitch.checked = result.outputSwitch;
+    })
+
+
+    let fuckEm = document.getElementById('fuckEm')
+    fuckEm.addEventListener("change", (e) => {
+        chrome.storage.sync.set({
+            fucker: e.target.checked
+        })
+        chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+            chrome.tabs.reload(tabs[0].id);
+        });
+    })
+    chrome.storage.sync.get(["fucker"], function (result) {
         fuckEm.checked = result.fucker;
     })
+
+    let styleBtn = document.getElementById("styleMenuBtn");
+    let main = document.getElementById("popUp");
+    let styleMenu = document.getElementById("styleMenu");
+    menu = false;
+    styleBtn.addEventListener("click", (e) => {
+        if (menu) {
+            main.style.display = "block";
+            styleMenu.style.display = "none";
+            console.log(main.style.display);
+            console.log(styleMenu.style.display);
+            menu = false;
+        } else{
+            main.style.display = "none";
+            styleMenu.style.display = "block";
+            menu = true;
+        }
+    });
 
 }
