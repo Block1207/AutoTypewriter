@@ -25,7 +25,7 @@ browser.storage.sync.get(["typer", "errorSlide", "fullAuto", "bufferValue", "fuc
     rInt = 0;
     if (outputSwitch) { console.log(errorSlide, bufferValue, fucker, legit); };
     try {
-        letter = document.getElementById("text_todo").firstChild.innerHTML;
+        letter = document.getElementById("text_todo_1").firstChild.innerHTML;
     } catch {
         letter = null;
     }
@@ -79,7 +79,7 @@ browser.storage.sync.get(["typer", "errorSlide", "fullAuto", "bufferValue", "fuc
         let min = max - 150;
         let timer = getRandomInt(min, max)
 
-        letter = document.getElementById("text_todo").firstChild.innerHTML;
+        letter = document.getElementById("text_todo_1").firstChild.innerHTML;
         if (letter == "&nbsp;") {
             if (outputSwitch) { console.log("---SPACE---"); };
             input.dispatchEvent(new KeyboardEvent('keypress', { 'key': letter }));
@@ -89,7 +89,7 @@ browser.storage.sync.get(["typer", "errorSlide", "fullAuto", "bufferValue", "fuc
 
         setTimeout(function () {
             if (outputSwitch) { console.log(timer); };
-            letter = document.getElementById("text_todo").firstChild.innerHTML;
+            letter = document.getElementById("text_todo_1").firstChild.innerHTML;
             if (outputSwitch) { console.log('typing: ' + letter); };
             input.dispatchEvent(new KeyboardEvent('keypress', { 'key': letter }));
             start();
@@ -113,7 +113,7 @@ browser.storage.sync.get(["typer", "errorSlide", "fullAuto", "bufferValue", "fuc
         function type() {
             setTimeout(function () {
                 let input = document.getElementById('input_area');
-                letter = document.getElementById("text_todo").firstChild.innerHTML;
+                letter = document.getElementById("text_todo_1").firstChild.innerHTML;
                 if (outputSwitch) { console.log(letter); }
                 input.dispatchEvent(new KeyboardEvent('keypress', { 'key': letter }));
                 repeat();
